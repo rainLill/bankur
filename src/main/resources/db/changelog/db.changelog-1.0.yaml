@@ -1,8 +1,0 @@
-databaseChangeLog:
-  - preConditions:
-      - runningAS:
-          username: liquibase
-
-  - changeSet:
-      id: 2020.07.02
-      author: rain
