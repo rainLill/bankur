@@ -3,57 +3,57 @@ databaseChangeLog:
   - runningAs:
       username:  liquibase
 
-#  - changeSet:
-#      id:  1
-#      author:  rain
-#      changes:
-#        - createTable:
-#              tableName: customer
-#              columns:
-#                - column:
-#                    name: id
-#                    type: int
-#                    autoIncrement: true
-#                    constraints:
-#                      primaryKey: true
-#                      nullable: false
-#                - column:
-#                    name: first_name
-#                    type: text
-#                - column:
-#                    name: second_name
-#                    type: text
-#                - column:
-#                    name: age
-#                    type: int
-#
-#        - createTable:
-#            tableName: account
-#            columns:
-#              - column:
-#                  name: id
-#                  type: int
-#                  autoIncrement: true
-#                  constraints:
-#                    primaryKey: true
-#                    nullable: false
-#              - column:
-#                  name: account_number
-#                  type: text
-#              - column:
-#                  name: customer_id
-#                  type: int
-#                  constraints:
-#                    foreignKeyName: fk_customer_id
-#                    references: customer(id)
-#
-#  -  changeSet:
-#       id:  2
-#       author:  nvoxland
-#       changes:
-#         -  addColumn:
-#              tableName:  account
-#              columns:
-#                - column:
-#                    name: balance
-#                    type: bigint
+  - changeSet:
+      id:  1
+      author:  rain
+      changes:
+        - createTable:
+              tableName: customer
+              columns:
+                - column:
+                    name: id
+                    type: int
+                    autoIncrement: true
+                    constraints:
+                      primaryKey: true
+                      nullable: false
+                - column:
+                    name: first_name
+                    type: text
+                - column:
+                    name: second_name
+                    type: text
+                - column:
+                    name: age
+                    type: int
+
+        - createTable:
+            tableName: account
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: account_number
+                  type: text
+              - column:
+                  name: customer_id
+                  type: int
+                  constraints:
+                    foreignKeyName: fk_customer_id
+                    references: customer(id)
+
+  -  changeSet:
+       id:  2
+       author:  nvoxland
+       changes:
+         -  addColumn:
+              tableName:  account
+              columns:
+                - column:
+                    name: balance
+                    type: bigint
