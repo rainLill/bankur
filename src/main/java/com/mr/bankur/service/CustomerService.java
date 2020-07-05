@@ -1,16 +1,14 @@
 package com.mr.bankur.service;
 
 import com.mr.bankur.model.Customer;
+import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 
+@Repository
 public interface CustomerService {
 
     void addCustomer(Customer customer);
     void deleteCustomer(int id);
-    void getBalance(String accountNumber);
-    void deposit(BigDecimal sum, String accountNumber);
-    void withdraw( BigDecimal sum, String accountNumber);
-    void transfer(BigDecimal sum, String fromAccountNumber, String toAccountNumber);
 
 }
