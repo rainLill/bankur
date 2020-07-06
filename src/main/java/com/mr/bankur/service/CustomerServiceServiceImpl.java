@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 @Service
 public class CustomerServiceServiceImpl implements CustomerService {
 
-    CustomerDAO customerDAO;
+    private final CustomerDAO customerDAO;
 
     public CustomerServiceServiceImpl(CustomerDAO customerDAO) {
         this.customerDAO = customerDAO;

@@ -57,3 +57,43 @@ databaseChangeLog:
                 - column:
                     name: balance
                     type: bigint
+
+  - changeSet:
+      id: 3
+      author: Marvin
+      changes:
+        - renameColumn:
+            catalogName: db.changelog
+            columnDataType: text
+            newColumnName: last_name
+            oldColumnName: second_name
+            remarks:
+            schemaName: public
+            tableName: customer
+
+  - changeSet:
+      id: 4
+      author: Marvin
+      changes:
+        - renameColumn:
+            catalogName: db.changelog
+            columnDataType: text
+            newColumnName: last_name_v2
+            oldColumnName: last_name
+            schemaName: public
+            tableName: customer
+
+  - changeSet:
+      id: 5
+      author: Marvin
+      changes:
+        - renameColumn:
+            catalogName: db.changelog
+            columnDataType: text
+            newColumnName: last_name
+            oldColumnName: last_name_v2
+            remarks: Perekonnanimi
+            schemaName: public
+            tableName: customer
+
+

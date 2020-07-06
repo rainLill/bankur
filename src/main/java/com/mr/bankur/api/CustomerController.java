@@ -5,6 +5,7 @@ package com.mr.bankur.api;
 
 import com.mr.bankur.model.Customer;
 import com.mr.bankur.service.CustomerServiceServiceImpl;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("customer")
 public class CustomerController {
 
+    //construktor injection
     private final CustomerServiceServiceImpl customerServiceServiceImpl;
 
     public CustomerController(CustomerServiceServiceImpl customerServiceServiceImpl) {
@@ -20,15 +22,14 @@ public class CustomerController {
 
     //create customer account
     @PostMapping()
-    public Customer createCustomer(@RequestBody Customer customer) { //sisse tuleb JSONina
+    public void createCustomer(@RequestBody Customer customer) { //sisse tuleb JSONina
         customerServiceServiceImpl.addCustomer(customer);
-        return customer;
     }
+
     //delete customer account
     //get balance from account
     //deposit money to account
     //withdraw money from account
     //transfer money
-
 
 }
