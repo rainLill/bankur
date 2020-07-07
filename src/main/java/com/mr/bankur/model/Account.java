@@ -8,6 +8,10 @@ public class Account {
     private BigDecimal balance;
     private long customerId;
 
+    public Account() {
+
+    }
+
     public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
     }
@@ -15,6 +19,7 @@ public class Account {
     public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
+
 
     public Account(String accountNumber, BigDecimal balance, long customerId) {
         this.accountNumber = accountNumber;

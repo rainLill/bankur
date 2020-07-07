@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 
 @RequestMapping("account")
@@ -22,13 +23,6 @@ public class AccountController {
         accountService.createAccount(id);
     }
 
-    /*
-    Esimene meetod createAccount
-    - Mõtle, mis on vajalikud sisendid konto loomiseks
-    - Annad muutujad edasi AccountServicile
-        - AccountService peab genereerima automaatselt random kontonumbri
-    - AccountServicist annad edasi AccountDAOle
-     */
     @PutMapping("deposit/{account}/{sum}")
     public void depositMoney(@PathVariable("account") String accountNumber, @PathVariable("sum") BigDecimal sum) {
         accountService.deposit(sum, accountNumber);
@@ -36,6 +30,10 @@ public class AccountController {
     @PutMapping("withdraw/{account}/{sum}")
     public void withdrawMoney(@PathVariable("account") String accountNumber, @PathVariable ("sum") BigDecimal sum){
         accountService.withdraw(sum, accountNumber);
+    }
+    @GetMapping()
+    public BigDecimal getBalance (@RequestParam String accountNumber){
+        return accountService.getBalance(accountNumber);
     }
 
     /*
@@ -46,3 +44,19 @@ public class AccountController {
      */
 
 }
+
+    /* õppimiseks:
+    Esimene meetod createAccount
+    - Mõtle, mis on vajalikud sisendid konto loomiseks
+    - Annad muutujad edasi AccountServicile
+        - AccountService peab genereerima automaatselt random kontonumbri
+    - AccountServicist annad edasi AccountDAOle
+     */
+
+//nüüd tundub, et võiks committida ja pushida?
+
+// kui sul asjad hästi on. pane korraks server käima ja proovi , kas asjad töötavad postman
+//töötab isegi :D
+// vahel läheb õnneks jh :D
+
+// aga siis commit ja push marvinisse
