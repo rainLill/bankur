@@ -9,6 +9,6 @@ import java.math.BigDecimal;
 public interface CustomerService {
 
     void addCustomer(Customer customer);
-    void deleteCustomer(int id);
+    void deleteCustomer(Customer customer);
 
 }

@@ -27,7 +27,7 @@ public class CustomerServiceServiceImpl implements CustomerService {
     }
 
     @Override
-    public void deleteCustomer(int id) {
+    public void deleteCustomer(Customer customer) {
 
     }
 

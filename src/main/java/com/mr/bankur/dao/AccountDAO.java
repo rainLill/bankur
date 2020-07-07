@@ -27,4 +27,21 @@ public class AccountDAO {
         namedParameterJdbcTemplate.update(sql, paramMap);
     }
 
+    public void depositMoney(String accountNumber, BigDecimal sum) {
+        String sql = "UPDATE account set balance = balance + :sum " +
+                "where account_number = :account_number";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("sum", sum);
+        paramMap.put("account_number", accountNumber);
+        namedParameterJdbcTemplate.update(sql,paramMap);
+    }
+
+    public void withdrawMoney(BigDecimal sum, String accountNumber) {
+        String sql = "UPDATE account set balance = balance - :sum " +
+                "where account_number = :account_number AND :sum <= balance";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("sum", sum);
+        paramMap.put("account_number", accountNumber);
+        namedParameterJdbcTemplate.update(sql,paramMap);
+    }
 }

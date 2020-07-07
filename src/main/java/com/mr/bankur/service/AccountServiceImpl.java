@@ -23,13 +23,16 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public void deposit(BigDecimal sum, String accountNumber) {
-
+        //saadame ibani ja sumi edasi DAOsse, kus updateme SQLiga andmebaasi
+        accountDAO.depositMoney(accountNumber, sum);
     }
 
 
     @Override
     public void withdraw(BigDecimal sum, String accountNumber) {
-
+        accountDAO.withdrawMoney(sum, accountNumber);
+        //hetkel on SQLi päringus "if" sees, kas on piisavalt raha, et välja võtta;
+        //selle kontrolli peaks tglt siia tooma......task Marvinile
     }
 
     @Override

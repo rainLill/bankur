@@ -18,7 +18,7 @@ public class AccountController {
     private AccountServiceImpl accountService;
 
     @PostMapping()
-    public void createAccount (@RequestParam int id){
+    public void createAccount(@RequestParam int id) {
         accountService.createAccount(id);
     }
 
@@ -28,8 +28,15 @@ public class AccountController {
     - Annad muutujad edasi AccountServicile
         - AccountService peab genereerima automaatselt random kontonumbri
     - AccountServicist annad edasi AccountDAOle
-
      */
+    @PutMapping("deposit/{account}/{sum}")
+    public void depositMoney(@PathVariable("account") String accountNumber, @PathVariable("sum") BigDecimal sum) {
+        accountService.deposit(sum, accountNumber);
+    }
+    @PutMapping("withdraw/{account}/{sum}")
+    public void withdrawMoney(@PathVariable("account") String accountNumber, @PathVariable ("sum") BigDecimal sum){
+        accountService.withdraw(sum, accountNumber);
+    }
 
     /*
     deposit

@@ -5,6 +5,7 @@ package com.mr.bankur.api;
 
 import com.mr.bankur.model.Customer;
 import com.mr.bankur.service.CustomerServiceServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,10 +27,14 @@ public class CustomerController {
         customerServiceServiceImpl.addCustomer(customer);
     }
 
-    //delete customer account
-    //get balance from account
-    //deposit money to account
-    //withdraw money from account
-    //transfer money
+    /*delete customer account
+    @PutMapping()
+    public void deleteCustomer (RequestBody Customer customer){
+        customerServiceServiceImpl.deleteCustomer(customer);
+        }
+     */
 
-}
+
+    }
+
+
