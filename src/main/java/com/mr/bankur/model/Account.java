@@ -8,6 +8,7 @@ public class Account {
     private BigDecimal balance;
     private long customerId;
 
+    // TODO: see on default constructor, mida pole vaja uuesti luua
     public Account() {
     }
 
@@ -34,4 +35,5 @@ public class Account {
     public BigDecimal getBalance() {
         return balance;
     }
+
 }

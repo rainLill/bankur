@@ -41,6 +41,7 @@ public class AccountServiceImpl implements AccountService {
         return "Not sufficient funds";
     }
 
+// TODO: Kas andmebaasis on balance BigInteger või BigDecimal? siin on kasutusel BigInteger , kui ülal kasutad raha jaoks BigDecimal.
     @Override
     public void createAccount(int customerId) {
         BigInteger balance = BigInteger.valueOf(0);

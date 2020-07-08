@@ -26,6 +26,8 @@ public class CustomerDAO {
         namedParameterJdbcTemplate.update(sql, paramMap);
     }
 
+    //TODO: Kas sa said status määramisest aru ?
+
     //see hetkel ei tööta, kuna andmebaas on foreign keyga securitud ja ei luba seotud tabelit cascade deleteda
     public void deleteCustomer(Customer customer) {
         String sql1 = "DELETE FROM customer WHERE EXISTS " +

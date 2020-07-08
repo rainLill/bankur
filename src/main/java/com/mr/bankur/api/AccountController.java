@@ -11,6 +11,8 @@ import java.math.BigDecimal;
 @RestController
 public class AccountController {
 
+    //TODO: Miks sa kasutad osade endpointide (meetodite sisendite puhul) @RequestParam ja osade puhul @PathVariable ? Mis su loogika selles on?
+
     //autowired springi bean dependency injection (õppimise jaoks comment)
     @Autowired
     private AccountService accountService;

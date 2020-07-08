@@ -20,6 +20,8 @@ public class AccountDAO {
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
+    //TODO: Miks on create account meetodis BigInteger balance tüübiks, kui kõikjal mujal on BigDecimal
+
     public void createAccount(int customerId, BigInteger balance, String accountNumber) {
         String sql = "INSERT INTO account (account_number, balance, customer_id)" +
                 "VALUES (:accountNumber, :balance, :customerId)";
@@ -30,12 +32,14 @@ public class AccountDAO {
         namedParameterJdbcTemplate.update(sql, paramMap);
     }
 
+    //TODO: paramMap on Java objekt, seega temaga seonduv peaks olema kirjutatud camelCases.
+
     public void depositMoney(String accountNumber, BigDecimal sum) {
-        String sql = "UPDATE account set balance = balance + :sum " +
+        String sql = "UPDATE account set balance = balance + :sum " +   // Siin reas kirjutad tulba ja tabeli nimed snake_case-iga
                 "where account_number = :account_number";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("sum", sum);
-        paramMap.put("account_number", accountNumber);
+        paramMap.put("account_number", accountNumber);  // see on puhas java camelCase
         namedParameterJdbcTemplate.update(sql, paramMap);
     }
 
