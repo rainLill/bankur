@@ -2,9 +2,9 @@ package com.mr.bankur.model;
 
 public class Customer {
 
-    private String firstName;
-    private String lastName;
-    private int age;
+    private final String firstName;
+    private final String lastName;
+    private final int age;
 
     public Customer(String firstName, String lastName, int age) {
         this.firstName = firstName;

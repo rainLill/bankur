@@ -56,7 +56,7 @@ public class AccountDAO {
         return result.get(0).getBalance();
     }
 
-    private class ObjectRowMapper implements RowMapper<Account> {
+    private static class ObjectRowMapper implements RowMapper<Account> {
         @Override
         public Account mapRow(ResultSet resultSet, int i) throws SQLException {
             Account account = new Account();

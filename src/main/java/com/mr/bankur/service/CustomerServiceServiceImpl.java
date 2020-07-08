@@ -4,8 +4,6 @@ import com.mr.bankur.dao.CustomerDAO;
 import com.mr.bankur.model.Customer;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-
 @Service
 public class CustomerServiceServiceImpl implements CustomerService {
 

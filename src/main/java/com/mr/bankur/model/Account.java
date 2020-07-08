@@ -8,12 +8,6 @@ public class Account {
     private BigDecimal balance;
     private long customerId;
 
-    public Account(String accountNumber, BigDecimal balance, long customerId) {
-        this.accountNumber = accountNumber;
-        this.balance = balance;
-        this.customerId = customerId;
-    }
-
     public Account() {
     }
 
@@ -27,6 +21,10 @@ public class Account {
 
     public long getCustomerId() {
         return customerId;
+    }
+
+    public void setCustomerId(long customerId) {
+        this.customerId = customerId;
     }
 
     public String getAccountNumber() {
