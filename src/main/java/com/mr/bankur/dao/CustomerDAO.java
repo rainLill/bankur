@@ -25,7 +25,17 @@ public class CustomerDAO {
         paramMap.put("lastName", customer.getLastName());
         paramMap.put("age", customer.getAge());
         namedParameterJdbcTemplate.update(sql, paramMap);
-        // lisa andmebaasi customer
+    }
 
+    //see hetkel ei tööta, kuna andmebaas on foreign keyga securitud ja ei luba seotud tabelit cascade deleteda
+    public void deleteCustomer(Customer customer) {
+        String sql1 = "DELETE FROM customer WHERE EXISTS " +
+                "(SELECT * FROM customer " +
+                "WHERE first_name = :firstName AND last_name = :lastName AND age = :age)";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("firstName", customer.getFirstName());
+        paramMap.put("lastName", customer.getLastName());
+        paramMap.put("age", customer.getAge());
+        namedParameterJdbcTemplate.update(sql1, paramMap);
     }
 }

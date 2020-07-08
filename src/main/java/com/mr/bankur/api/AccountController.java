@@ -1,11 +1,9 @@
 package com.mr.bankur.api;
-
 import com.mr.bankur.model.Account;
 import com.mr.bankur.service.AccountServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
@@ -14,7 +12,7 @@ import java.math.BigInteger;
 @RestController
 public class AccountController {
 
-    //autowired springi bean
+    //autowired springi bean dependency injection (õppimise jaoks comment)
     @Autowired
     private AccountServiceImpl accountService;
 
@@ -27,36 +25,20 @@ public class AccountController {
     public void depositMoney(@PathVariable("account") String accountNumber, @PathVariable("sum") BigDecimal sum) {
         accountService.deposit(sum, accountNumber);
     }
+
     @PutMapping("withdraw/{account}/{sum}")
-    public void withdrawMoney(@PathVariable("account") String accountNumber, @PathVariable ("sum") BigDecimal sum){
-        accountService.withdraw(sum, accountNumber);
+    public String withdrawMoney(@PathVariable("account") String accountNumber, @PathVariable("sum") BigDecimal sum) {
+        return accountService.withdraw(sum, accountNumber);
     }
+
     @GetMapping()
-    public BigDecimal getBalance (@RequestParam String accountNumber){
+    public BigDecimal getBalance(@RequestParam String accountNumber) {
         return accountService.getBalance(accountNumber);
     }
 
-    /*
-    deposit
-    withdraw
-    getBalance
-    transfer
-     */
-
+    @PutMapping("transfer/{fromAccount}/{toAccount}/{sum}")
+    public String transferMoney(@PathVariable("fromAccount") String fromAccount, @PathVariable("toAccount") String toAccount, @PathVariable("sum") BigDecimal sum) {
+        return accountService.transfer(sum, fromAccount, toAccount);
+    }
 }
 
-    /* õppimiseks:
-    Esimene meetod createAccount
-    - Mõtle, mis on vajalikud sisendid konto loomiseks
-    - Annad muutujad edasi AccountServicile
-        - AccountService peab genereerima automaatselt random kontonumbri
-    - AccountServicist annad edasi AccountDAOle
-     */
-
-//nüüd tundub, et võiks committida ja pushida?
-
-// kui sul asjad hästi on. pane korraks server käima ja proovi , kas asjad töötavad postman
-//töötab isegi :D
-// vahel läheb õnneks jh :D
-
-// aga siis commit ja push marvinisse

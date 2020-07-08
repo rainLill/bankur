@@ -20,7 +20,6 @@ public class AccountDAO {
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    //SQL lause andmebaasi pihta depositima
     public void createAccount(int customerId, BigInteger balance, String accountNumber) {
         String sql = "INSERT INTO account (account_number, balance, customer_id)" +
                 "VALUES (:accountNumber, :balance, :customerId)";
@@ -37,16 +36,16 @@ public class AccountDAO {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("sum", sum);
         paramMap.put("account_number", accountNumber);
-        namedParameterJdbcTemplate.update(sql,paramMap);
+        namedParameterJdbcTemplate.update(sql, paramMap);
     }
 
     public void withdrawMoney(BigDecimal sum, String accountNumber) {
         String sql = "UPDATE account set balance = balance - :sum " +
-                "where account_number = :account_number AND :sum <= balance";
+                "WHERE account_number = :account_number";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("sum", sum);
         paramMap.put("account_number", accountNumber);
-        namedParameterJdbcTemplate.update(sql,paramMap);
+        namedParameterJdbcTemplate.update(sql, paramMap);
     }
 
     public BigDecimal getBalance(String accountNumber) {
@@ -57,10 +56,9 @@ public class AccountDAO {
         return result.get(0).getBalance();
     }
 
-    private class ObjectRowMapper implements RowMapper<Account>{
+    private class ObjectRowMapper implements RowMapper<Account> {
         @Override
         public Account mapRow(ResultSet resultSet, int i) throws SQLException {
-
             Account account = new Account();
             account.setAccountNumber(resultSet.getString("account_number"));
             account.setBalance(resultSet.getBigDecimal("balance"));
@@ -68,16 +66,3 @@ public class AccountDAO {
         }
     }
 }
-
-
-// mis asja sa just ennem tegid ?
-//loogika oli selles, et kuna tahan objectrowmapperiga teha uut accounti, aga Accounounti konstruktoris olid vajalikud osad,
-// siis tegin sellise konstruktori, mis ei võta muutujaid sisse ja neid saab settida selles mapperis
-
-// see mis sa tegid on defaultConstructor
-// kui sa konstructorit ei tee , siis s java  teeb ise sellise asja vaikimsi
-// seega kustuta see ära ja kõik on hästi , kui sul getterid ja setterid on paigas
-
-//kustuna ära, aga siis oli punane :D
-
-//kas näed?
