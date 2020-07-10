@@ -96,4 +96,33 @@ databaseChangeLog:
             schemaName: public
             tableName: customer
 
+  -  changeSet:
+       id:  6
+       author:  Marvin
+       changes:
+         -  addColumn:
+              tableName:  account
+              columns:
+                - column:
+                    name: status
+                    type: text
+         - addColumn:
+             tableName: customer
+             columns:
+               - column:
+                   name: status
+                   type: text
+  - changeSet:
+       id: 7
+       author: Marvin
+       changes:
+         - modifyDataType:
+             catalogName: db.changelog
+             columnName: balance
+             newDataType: decimal
+             schemaName: public
+             tableName: account
+
+
+
 

@@ -12,15 +12,18 @@ import java.math.BigDecimal;
 public class AccountController {
 
     //TODO: Miks sa kasutad osade endpointide (meetodite sisendite puhul) @RequestParam ja osade puhul @PathVariable ? Mis su loogika selles on?
+    //Marvin: Loogikat pole...seal kus rohkem sisendeid vaja panin PathVariable ja mujal Requestparam, tundus lihtsam
 
     //autowired springi bean dependency injection (õppimise jaoks comment)
     @Autowired
     private AccountService accountService;
 
     @PostMapping()
-    public void createAccount(@RequestParam int id) {
-        accountService.createAccount(id);
+    public void createAccount(@RequestParam int customerId) {
+        accountService.createAccount(customerId);
     }
+
+    //TODO deleteAccount
 
     @PutMapping("deposit/{account}/{sum}")
     public void depositMoney(@PathVariable("account") String accountNumber, @PathVariable("sum") BigDecimal sum) {

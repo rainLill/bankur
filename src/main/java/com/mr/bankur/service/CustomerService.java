@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 public interface CustomerService {
 
     void addCustomer(Customer customer);
-    void deleteCustomer(Customer customer);
+    void deleteCustomer(int id);
 
 }

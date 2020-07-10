@@ -28,7 +28,6 @@ public class AccountServiceImpl implements AccountService {
             return "Have your money: " + sum;
         }
         return "Not sufficient funds";
-
     }
 
     @Override
@@ -41,17 +40,34 @@ public class AccountServiceImpl implements AccountService {
         return "Not sufficient funds";
     }
 
-// TODO: Kas andmebaasis on balance BigInteger või BigDecimal? siin on kasutusel BigInteger , kui ülal kasutad raha jaoks BigDecimal.
     @Override
     public void createAccount(int customerId) {
-        BigInteger balance = BigInteger.valueOf(0);
+        BigDecimal balance = BigDecimal.valueOf(0);
         accountDAO.createAccount(customerId, balance, generateAccountNumber());
     }
+
+    @Override
+    public void deleteAccount(int customerId) {
+        accountDAO.deleteAccount(customerId);
+    }
+
 
     private String generateAccountNumber() {
         int max = 99999;
         int min = 10000;
         int randomAccountNumber = (int)(Math.random() * ((max - min) + 1)) + min;
-        return "EE" + randomAccountNumber;
+
+        if (isAccountNumberExisting("EE"+randomAccountNumber)){
+            generateAccountNumber();
+            return null;
+        }
+        else {
+            return "EE" + randomAccountNumber;
+        }
     }
+
+    private boolean isAccountNumberExisting(String accountNumber){
+        return accountDAO.getBalance(accountNumber).compareTo(BigDecimal.valueOf(0)) >= 0;
+    }
+
 }

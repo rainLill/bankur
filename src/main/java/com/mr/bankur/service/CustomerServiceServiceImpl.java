@@ -19,7 +19,8 @@ public class CustomerServiceServiceImpl implements CustomerService {
     }
 
     @Override
-    public void deleteCustomer(Customer customer) {
-        customerDAO.deleteCustomer(customer);
+    public void deleteCustomer(int id) {
+        customerDAO.deleteCustomer(id);
+        //siit tahaks kustutada ka kõik selle kliendi kontod, kui klient ise kaob...TODO
     }
 }

@@ -20,44 +20,48 @@ public class AccountDAO {
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    //TODO: Miks on create account meetodis BigInteger balance tüübiks, kui kõikjal mujal on BigDecimal
-
-    public void createAccount(int customerId, BigInteger balance, String accountNumber) {
-        String sql = "INSERT INTO account (account_number, balance, customer_id)" +
-                "VALUES (:accountNumber, :balance, :customerId)";
+    public void createAccount(int customerId, BigDecimal balance, String accountNumber) {
+        String sql = "INSERT INTO account (account_number, balance, customer_id, status)" +
+                "VALUES (:accountNumber, :balance, :customerId, :status)";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("accountNumber", accountNumber);
         paramMap.put("balance", balance);
         paramMap.put("customerId", customerId);
+        paramMap.put("status", "active");
         namedParameterJdbcTemplate.update(sql, paramMap);
     }
 
-    //TODO: paramMap on Java objekt, seega temaga seonduv peaks olema kirjutatud camelCases.
-
     public void depositMoney(String accountNumber, BigDecimal sum) {
-        String sql = "UPDATE account set balance = balance + :sum " +   // Siin reas kirjutad tulba ja tabeli nimed snake_case-iga
-                "where account_number = :account_number";
+        String sql = "UPDATE account set balance = balance + :sum " +
+                "where account_number = :accounNumber";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("sum", sum);
-        paramMap.put("account_number", accountNumber);  // see on puhas java camelCase
+        paramMap.put("accountNumber", accountNumber);
         namedParameterJdbcTemplate.update(sql, paramMap);
     }
 
     public void withdrawMoney(BigDecimal sum, String accountNumber) {
         String sql = "UPDATE account set balance = balance - :sum " +
-                "WHERE account_number = :account_number";
+                "WHERE account_number = :accountNumber";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("sum", sum);
-        paramMap.put("account_number", accountNumber);
+        paramMap.put("accountNumber", accountNumber);
         namedParameterJdbcTemplate.update(sql, paramMap);
     }
 
     public BigDecimal getBalance(String accountNumber) {
-        String sql = "SELECT * FROM account WHERE account_number = :account_number";
+        String sql = "SELECT * FROM account WHERE account_number = :accountNumber";
         Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("account_number", accountNumber);
+        paramMap.put("accountNumber", accountNumber);
         List<Account> result = namedParameterJdbcTemplate.query(sql, paramMap, new ObjectRowMapper());
         return result.get(0).getBalance();
+    }
+
+    public void deleteAccount(int customerId) {
+        String sql = "UPDATE account SET status = 'inactive' WHERE customer_id = :customerId";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("customerId", customerId);
+        namedParameterJdbcTemplate.update(sql,paramMap);
     }
 
     private static class ObjectRowMapper implements RowMapper<Account> {

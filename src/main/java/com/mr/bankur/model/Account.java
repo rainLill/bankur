@@ -8,18 +8,6 @@ public class Account {
     private BigDecimal balance;
     private long customerId;
 
-    // TODO: see on default constructor, mida pole vaja uuesti luua
-    public Account() {
-    }
-
-    public void setAccountNumber(String accountNumber) {
-        this.accountNumber = accountNumber;
-    }
-
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
-    }
-
     public long getCustomerId() {
         return customerId;
     }
@@ -32,8 +20,16 @@ public class Account {
         return accountNumber;
     }
 
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
     public BigDecimal getBalance() {
         return balance;
+    }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
     }
 
 }

@@ -11,4 +11,5 @@ public interface AccountService {
     String withdraw(BigDecimal sum, String accountNumber);
     String transfer(BigDecimal sum, String fromAccountNumber, String toAccountNumber);
     void createAccount(int id);
+    void deleteAccount(int customerId);
 }
