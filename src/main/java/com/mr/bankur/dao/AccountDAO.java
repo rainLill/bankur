@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -61,10 +60,17 @@ public class AccountDAO {
         String sql = "UPDATE account SET status = 'inactive' WHERE customer_id = :customerId";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("customerId", customerId);
-        namedParameterJdbcTemplate.update(sql,paramMap);
+        namedParameterJdbcTemplate.update(sql, paramMap);
     }
 
-    private static class ObjectRowMapper implements RowMapper<Account> {
+    public void deleteAccount(String accountNumber) {
+        String sql = "UPDATE account SET status = 'inactive' WHERE account_number = :accountNumber";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("accountNumber", accountNumber);
+        namedParameterJdbcTemplate.update(sql, paramMap);
+    }
+
+    private class ObjectRowMapper implements RowMapper<Account> {
         @Override
         public Account mapRow(ResultSet resultSet, int i) throws SQLException {
             Account account = new Account();

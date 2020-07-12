@@ -51,6 +51,11 @@ public class AccountServiceImpl implements AccountService {
         accountDAO.deleteAccount(customerId);
     }
 
+    @Override
+    public void deleteAccount(String accountNumber) {
+        accountDAO.deleteAccount(accountNumber);
+    }
+
 
     private String generateAccountNumber() {
         int max = 99999;

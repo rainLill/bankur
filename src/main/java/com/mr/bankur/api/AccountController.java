@@ -23,7 +23,11 @@ public class AccountController {
         accountService.createAccount(customerId);
     }
 
-    //TODO deleteAccount
+    @DeleteMapping()
+    public void deleteAccount(@RequestParam String accountNumber){
+        accountService.deleteAccount(accountNumber);
+    }
+
 
     @PutMapping("deposit/{account}/{sum}")
     public void depositMoney(@PathVariable("account") String accountNumber, @PathVariable("sum") BigDecimal sum) {
