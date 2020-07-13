@@ -1,7 +1,9 @@
 package com.mr.bankur.service;
+
 import com.mr.bankur.dao.AccountDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
@@ -32,7 +34,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public String transfer(BigDecimal sum, String fromAccountNumber, String toAccountNumber) {
-        if (accountDAO.getBalance(fromAccountNumber).compareTo(sum) >= 0){
+        if (accountDAO.getBalance(fromAccountNumber).compareTo(sum) >= 0) {
             accountDAO.withdrawMoney(sum, fromAccountNumber);
             accountDAO.depositMoney(toAccountNumber, sum);
             return "Transfer made";
@@ -60,19 +62,18 @@ public class AccountServiceImpl implements AccountService {
     private String generateAccountNumber() {
         int max = 99999;
         int min = 10000;
-        int randomAccountNumber = (int)(Math.random() * ((max - min) + 1)) + min;
+        int randomAccountNumber = (int) (Math.random() * ((max - min) + 1)) + min;
 
-        if (isAccountNumberExisting("EE"+randomAccountNumber)){
+        if (isAccountNumberExisting("EE" + randomAccountNumber)) {
             generateAccountNumber();
             return null;
-        }
-        else {
+        } else {
             return "EE" + randomAccountNumber;
         }
     }
 
-    private boolean isAccountNumberExisting(String accountNumber){
-        return accountDAO.getBalance(accountNumber).compareTo(BigDecimal.valueOf(0)) >= 0;
+    private boolean isAccountNumberExisting(String accountNumber) {
+        return false;
+        //TODO mõtle mingi hea viis kuidas kontrollida
     }
-
 }

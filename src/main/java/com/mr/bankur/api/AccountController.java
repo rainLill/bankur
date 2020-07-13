@@ -4,6 +4,7 @@ import com.mr.bankur.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Min;
 import java.math.BigDecimal;
 
 
@@ -12,7 +13,11 @@ import java.math.BigDecimal;
 public class AccountController {
 
     //TODO: Miks sa kasutad osade endpointide (meetodite sisendite puhul) @RequestParam ja osade puhul @PathVariable ? Mis su loogika selles on?
-    //Marvin: Loogikat pole...seal kus rohkem sisendeid vaja panin PathVariable ja mujal Requestparam, tundus lihtsam
+    //TODO: kõik kus kasutad "sum" on vaja requestparammi peale, veel parem requesBodyga
+    //TODO seega tuleb kõik ümber teha ja panna peale validaatorid, kus vaja
+
+    //õppimiseks: pathvariable on mingi viide millegile, aga mitte kunagi äriloogiline sisend
+    //sisendid, mis on muutujad vaja sisse anda requestparametriga, isegi requestbodyga oleks parem
 
     //autowired springi bean dependency injection (õppimise jaoks comment)
     @Autowired
@@ -29,8 +34,12 @@ public class AccountController {
     }
 
 
+    //TODO: vajalik lisada kontroll, et sisestatud sum oleks positiivne arv, muidu saab koodi trikitada
+    // kas seda saab ka @Validiga teha või kuna ta pole klassi muutuja, siis vaja äriloogikas kontrollida?
+
+
     @PutMapping("deposit/{account}/{sum}")
-    public void depositMoney(@PathVariable("account") String accountNumber, @PathVariable("sum") BigDecimal sum) {
+    public void depositMoney(@PathVariable("account") String accountNumber, @Min(value = 0) @PathVariable("sum") BigDecimal sum) {
         accountService.deposit(sum, accountNumber);
     }
 

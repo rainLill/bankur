@@ -2,10 +2,14 @@ package com.mr.bankur.api;
 
 import com.mr.bankur.model.Customer;
 import com.mr.bankur.service.CustomerService;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 
 @RestController
+@Validated
 @RequestMapping("customer")
 public class CustomerController {
 
@@ -17,7 +21,7 @@ public class CustomerController {
     }
 
     @PostMapping()
-    public void createCustomer(@RequestBody Customer customer) { //sisse tuleb JSONina (kommentaar õppimise jaoks)
+    public void createCustomer(@Valid @RequestBody Customer customer) { //sisse tuleb JSONina (kommentaar õppimise jaoks)
         customerService.addCustomer(customer);
     }
 

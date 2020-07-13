@@ -32,7 +32,7 @@ public class AccountDAO {
 
     public void depositMoney(String accountNumber, BigDecimal sum) {
         String sql = "UPDATE account set balance = balance + :sum " +
-                "where account_number = :accounNumber";
+                "where account_number = :accountNumber";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("sum", sum);
         paramMap.put("accountNumber", accountNumber);
