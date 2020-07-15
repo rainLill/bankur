@@ -5,6 +5,7 @@ import javax.validation.constraints.Min;
 
 public class Customer {
 
+
     private final String firstName;
     private final String lastName;
     @Min(value = 16)

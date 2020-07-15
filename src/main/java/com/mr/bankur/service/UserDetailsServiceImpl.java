@@ -15,6 +15,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    //TODO: kui ma sell einfoga tahaks sisse logida, siis kust ma saan passwordi?
     @Override
     public UserDetails loadUserByUsername(String username) {
         return User.withUsername("test")
@@ -22,3 +23,4 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .roles("USER").build();
     }
 }
+

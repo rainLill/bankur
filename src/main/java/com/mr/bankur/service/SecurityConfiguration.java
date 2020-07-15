@@ -12,10 +12,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfiguration extends
         WebSecurityConfigurerAdapter {
 
+    //TODO Küsimus: mida configure meetod iga rida talupojalikult lahtiseletatult tähendab
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("", "")
+                .antMatchers("/", "/home")
                     .permitAll()
                 .anyRequest()
                     .authenticated()
@@ -31,3 +32,4 @@ public class SecurityConfiguration extends
         return new BCryptPasswordEncoder();
     }
 }
+

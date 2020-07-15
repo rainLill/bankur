@@ -25,8 +25,12 @@ public class CustomerController {
         customerService.addCustomer(customer);
     }
 
+    //TODO Tahaks selle requestbody peale teha, aga küsimus: kuna mul tekib customerID
+    // autoincremendiga, siis ei saa ma seda enne "model"is teada ja ei saa sellist sisendit
+    // anda. Kuidas see oleks mõistlik ringi teha, luua mingi muu individual value?
+
     @DeleteMapping()
-    public void deleteCustomer(@RequestParam("id") int customerId) {
+    public void deleteCustomer(@RequestParam ("id") int customerId) {
         customerService.deleteCustomer(customerId);
     }
 }
