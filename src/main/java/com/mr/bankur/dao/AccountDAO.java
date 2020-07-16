@@ -49,9 +49,9 @@ public class AccountDAO {
     }
 
     public BigDecimal getBalance(String accountNumber) {
-        String sql = "SELECT * FROM account WHERE account_number = :accountNumber";
+        String sql = "SELECT * FROM account WHERE account_number = :account_number";
         Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("accountNumber", accountNumber);
+        paramMap.put("account_number", accountNumber);
         List<Account> result = namedParameterJdbcTemplate.query(sql, paramMap, new ObjectRowMapper());
         return result.get(0).getBalance();
     }

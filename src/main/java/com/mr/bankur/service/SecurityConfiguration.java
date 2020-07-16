@@ -15,8 +15,8 @@ public class SecurityConfiguration extends
     //TODO Küsimus: mida configure meetod iga rida talupojalikult lahtiseletatult tähendab
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/", "/home")
+        http.csrf().disable().authorizeRequests()
+                .antMatchers("/", "/home", "/user/signUp")
                     .permitAll()
                 .anyRequest()
                     .authenticated()

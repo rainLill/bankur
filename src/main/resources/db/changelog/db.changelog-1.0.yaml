@@ -123,6 +123,35 @@ databaseChangeLog:
              schemaName: public
              tableName: account
 
+  - changeSet:
+        id:  8
+        author:  Marvin
+        changes:
+          - createTable:
+              tableName: user
+              columns:
+                - column:
+                    name: id
+                    type: int
+                    autoIncrement: true
+                    constraints:
+                      primaryKey: true
+                      nullable: false
+                - column:
+                    name: user_name
+                    type: text
+                - column:
+                    name: password
+                    type: text
+  - changeSet:
+        id:  9
+        author:  liquibase-docs
+        changes:
+          - renameTable:
+              newTableName:  user_table
+              oldTableName:  user
+
+
 
 
 

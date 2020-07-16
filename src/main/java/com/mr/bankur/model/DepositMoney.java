@@ -4,7 +4,8 @@ import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
 import java.math.BigDecimal;
 
-//TODO küsimus Siimule, tundub et bigdecimal valiue min ei tööta...
+//TODO küsimus Siimule, tundub et bigdecimal valiue min ei tööta...vastus - jah ei tööta,
+//tuleb ilmselt teha mingi "if" või mingi veel ägedam meetod
 public class DepositMoney {
     private String accountNumber;
     @DecimalMin(value = "0.0", inclusive = false)

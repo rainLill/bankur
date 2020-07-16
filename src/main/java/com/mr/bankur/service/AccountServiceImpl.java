@@ -73,7 +73,13 @@ public class AccountServiceImpl implements AccountService {
     }
 
     private boolean isAccountNumberExisting(String accountNumber) {
+
+        //TODO mõtle mingi hea viis kuidas kontrollida - yamlis: addunique constraint
+        //+ if kontroll, et kood saaks aru, et uus vaja genereerida
+        // postgers saab kasutada create sequence, mis on veel parem + if loogika
+
+
+
         return false;
-        //TODO mõtle mingi hea viis kuidas kontrollida
     }
 }

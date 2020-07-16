@@ -27,9 +27,9 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
-    //TODO requestBody peale teha
-    @PostMapping()
-    public void createAccount(@RequestBody int customerId) {
+    //TODO requestBody peale teha - vastus id peale viidata URLis on täiesti oK
+    @PostMapping({"{customer_id}"})
+    public void createAccount(@PathVariable ("customer_id") int customerId) {
         accountService.createAccount(customerId);
     }
 
@@ -52,10 +52,6 @@ public class AccountController {
     public BigDecimal getBalance(@RequestParam String accountNumber) {
         return accountService.getBalance(accountNumber);
     }
-//    @GetMapping()
-//    public BigDecimal getBalance(@RequestBody Account account) {
-//        return accountService.getBalance(account.getAccountNumber())
-//    }
 
     @PutMapping("transfer")
     public String transferMoney(@RequestBody TransferMoney transferMoney) {
