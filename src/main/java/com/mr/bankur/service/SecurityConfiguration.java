@@ -16,7 +16,7 @@ public class SecurityConfiguration extends
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-                .antMatchers("/", "/home", "/user/signUp")
+                .antMatchers("/home", "/user/signUp")
                     .permitAll()
                 .anyRequest()
                     .authenticated()
@@ -27,6 +27,7 @@ public class SecurityConfiguration extends
                 .logout()
                     .permitAll();
     }
+    //TODO miks see siin on?
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

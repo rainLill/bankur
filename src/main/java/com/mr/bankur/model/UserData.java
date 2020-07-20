@@ -7,7 +7,11 @@ public class UserData {
 
     public UserData(String userName, String password) {
         this.userName = userName;
+        //TODO siia saaks teha valideerimise; et keerukust tõsta
         this.password = password;
+    }
+
+    public UserData() {
     }
 
     public void setUserName(String userName) {
