@@ -26,7 +26,7 @@ public class UserDAO {
         String sql = "INSERT INTO user_table (user_name, password) values (:userName, :password)";
         Map<String, Object > paramMap = new HashMap<>();
         paramMap.put("userName", userData.getUserName());
-        paramMap.put("password", passwordEncoder.encode(userData.getPassword()));
+        paramMap.put("password", userData.getPassword());
         namedParameterJdbcTemplate.update(sql,paramMap);
     }
     public String getPassword (String username){
@@ -34,7 +34,7 @@ public class UserDAO {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("username", username);
         List<UserData> result = namedParameterJdbcTemplate.query(sql, paramMap, new ObjectRowMapper());
-        return result.get(result.indexOf(0)).getPassword();
+        return result.get(0).getPassword();
     }
 
 

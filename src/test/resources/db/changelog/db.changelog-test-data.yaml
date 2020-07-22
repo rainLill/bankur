@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - preConditions:
+  - runningAs:
+      username:  liquibase
+  - changeSet:
+      id: 10
+      author: Marvin
+      changes:
+        - sql:
+            sql: INSERT INTO account (account_number, balance) VALUES ('EE59410', 10)
+
+
+
+
+

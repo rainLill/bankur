@@ -19,18 +19,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    //TODO: kui ma selle infoga tahaks sisse logida, siis kust ma saan passwordi?
-    //TODO: miskipärat ei tööta: Index -1 out of bounds for length 1
+    @Autowired
+    private UserDAO userDAO;
+
     @Override
     public UserDetails loadUserByUsername(String username) {
+
         return User.withUsername(username)
                 .password(userDAO.getPassword(username))
                 .roles("USER").build();
-    }
-    @Autowired
-    private UserDAO userDAO;
-    public void signUp (UserData userData){
-        userDAO.signUp(userData);
     }
 }
 

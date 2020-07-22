@@ -17,16 +17,17 @@ class BankurApplicationTests {
 
     @Autowired
     private MathService mathService;
+    @Autowired
+    private AccountController accountController;
+    @Autowired
+    private AccountDAO accountDAO;
 
     @Test
     void mathServiceTest() {
         assertEquals (4,mathService.multiply(2,2));
     }
 
-    @Autowired
-    private AccountController accountController;
-    @Autowired
-    private AccountDAO accountDAO;
+
 
     //see ei ole tglt valid test, mõistlik on ikkagi testida vastu oma datasourcu ja yampliga test datat
     //see tähendab, et sisse panne expected value staatilisena (number vms) ja siis pärida oma test datast

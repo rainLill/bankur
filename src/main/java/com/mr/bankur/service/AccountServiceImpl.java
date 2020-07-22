@@ -20,26 +20,39 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public void deposit(BigDecimal sum, String accountNumber) {
-        accountDAO.depositMoney(accountNumber, sum);
+        if (isPositive(sum)) {
+            accountDAO.depositMoney(accountNumber, sum);
+        } else {
+            System.out.println("Insert positive sum");
+        }
     }
 
     @Override
     public String withdraw(BigDecimal sum, String accountNumber) {
-        if (accountDAO.getBalance(accountNumber).compareTo(sum) >= 0) {
-            accountDAO.withdrawMoney(sum, accountNumber);
-            return "Have your money: " + sum;
+        if (isPositive(sum)) {
+            if (accountDAO.getBalance(accountNumber).compareTo(sum) >= 0) {
+                accountDAO.withdrawMoney(sum, accountNumber);
+                return "Have your money: " + sum;
+            }
+            return "Not sufficient funds";
+        } else {
+            return "Insert positive sum";
         }
-        return "Not sufficient funds";
     }
 
     @Override
     public String transfer(BigDecimal sum, String fromAccountNumber, String toAccountNumber) {
-        if (accountDAO.getBalance(fromAccountNumber).compareTo(sum) >= 0) {
-            accountDAO.withdrawMoney(sum, fromAccountNumber);
-            accountDAO.depositMoney(toAccountNumber, sum);
-            return "Transfer made";
+        if (isPositive(sum)) {
+            if (accountDAO.getBalance(fromAccountNumber).compareTo(sum) >= 0) {
+                accountDAO.withdrawMoney(sum, fromAccountNumber);
+                accountDAO.depositMoney(toAccountNumber, sum);
+                return "Transfer made";
+            }
+            return "Not sufficient funds";
         }
-        return "Not sufficient funds";
+        else {
+            return "Insert positive sum";
+        }
     }
 
     @Override
@@ -79,7 +92,10 @@ public class AccountServiceImpl implements AccountService {
         // postgers saab kasutada create sequence, mis on veel parem + if loogika
 
 
-
         return false;
+    }
+
+    private boolean isPositive(BigDecimal sum) {
+        return sum.compareTo(BigDecimal.valueOf(0)) >= 0;
     }
 }
